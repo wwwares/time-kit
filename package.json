@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "dev": "tsup src/index.ts --watch --dts --onSuccess \"node dist/index.js\"",
+    "lint": "biome ci ./src",
     "test:ci": "vitest run",
     "test": "vitest --coverage",
     "build": "vitest run && tsup src/index.ts --dts --format esm"
