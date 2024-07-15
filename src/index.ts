@@ -1,3 +1,3 @@
-export * from "./lang";
+export * from "./to-lang";
+export * from "./from-lang";
 export * from "./date";
-export * from "./when";

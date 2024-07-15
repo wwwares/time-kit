@@ -23,7 +23,7 @@ function date(expression: DateMathString, baseDate: Date = new Date()): Date {
     TimeKey<TimeUnit>,
     TimeOperation
   ];
-  const value = parseInt(valueStr, 10);
+  const value = Number.parseInt(valueStr, 10);
   const unit = unitStr.endsWith("s")
     ? (unitStr.slice(0, -1) as TimeUnit)
     : (unitStr as TimeUnit); // Normalize unit to singular
@@ -65,4 +65,4 @@ function date(expression: DateMathString, baseDate: Date = new Date()): Date {
   return date;
 }
 
-export { date };
+export { date as tkDate };

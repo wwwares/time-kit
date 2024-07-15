@@ -14,4 +14,5 @@ export const week = (num: number) => day(num * 7);
 
 export const month = (num: number) => day(num * 30.436875); // average month
 
-export const year = (num: number) => month(num * 12);
+// Round to adjust for miniscule (31556951999.999996) imprecision
+export const year = (num: number) => Math.round(month(num * 12));

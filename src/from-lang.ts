@@ -2,7 +2,7 @@ import { hour, minute, day, second, week } from "./helpers";
 
 const ignoredTerms = ["and"];
 
-const terms: { [term: string]: any } = {
+const terms: Record<string, (num: number) => number> = {
   hr: hour,
   hrs: hour,
   hour,
@@ -27,13 +27,18 @@ function tokenize(input: string) {
   return tokens.reduce<string[]>((acc, token) => {
     if (!ignoredTerms.includes(token)) {
       const stripped = token.replace(/\W/g, "");
+
+      if (stripped === "") {
+        console.error(`[@wwwares/time-kit] Invalid token: ${input}`);
+      }
+
       // If the token parses as a number, include it
-      if (!isNaN(Number(stripped))) {
+      if (!Number.isNaN(Number(stripped))) {
         acc.push(stripped);
       } else {
         // Otherwise split alphanumeric values and include
         const matches = stripped.match(/(\d+|[^\d]+)/g);
-        if (Array.isArray(matches)) {
+        if (matches) {
           acc.push(...matches);
         }
       }
@@ -52,9 +57,11 @@ function convert(input: string): number {
     const convertFunc = terms[unit];
     if (convertFunc) {
       totalMs += convertFunc(value);
+    } else {
+      console.error(`[@wwwares/time-kit] Invalid unit: ${unit}`);
     }
   }
   return totalMs;
 }
 
-export { convert as lang };
+export { convert as tkFromLang };

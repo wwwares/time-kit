@@ -25,11 +25,11 @@ function when(date: Date | number | string): string {
   }
 
   const duration = Math.floor(delta / magnitudes[i - 1]);
-  const suffix = duration === 1 ? suffixes[i - 1] : suffixes[i - 1] + "s";
+  const suffix = duration === 1 ? suffixes[i - 1] : `${suffixes[i - 1]}s`;
 
   if (suffix === "second" || delta < MIN) return "Seconds ago";
 
   return `${duration} ${suffix} ago`;
 }
 
-export { when };
+export { when as tkToLang };

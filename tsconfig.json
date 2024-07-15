@@ -17,6 +17,7 @@
     "module": "preserve",
     "noEmit": true,
     "lib": [
+      "dom",
       "es2022"
     ]
   },
