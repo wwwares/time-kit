@@ -1,29 +1,45 @@
 {
   "name": "@wwwares/time-kit",
   "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "module": "dist/index.mjs",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "dev": "tsup src/index.ts --watch --dts --onSuccess \"node dist/index.js\"",
-    "lint": "biome ci ./src",
-    "test:ci": "vitest run",
-    "test": "vitest --coverage",
-    "build": "vitest run && tsup src/index.ts --dts --format esm"
-  },
-  "keywords": [],
-  "author": "Evan Kysley",
+  "description": "Get the time since a Date in a readable format.",
   "license": "MIT",
+  "author": "Evan Kysley",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "changeset": "changeset",
+    "prepublishOnly": "pnpm build",
+    "release": "changeset publish"
+  },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.2",
-    "@changesets/cli": "^2.27.7",
-    "@vitest/coverage-istanbul": "^2.0.2",
-    "tsup": "^8.1.0",
-    "typescript": "^5.5.2",
-    "vitest": "^2.0.2"
-  }
+    "@changesets/cli": "^3.0.1",
+    "oxfmt": "^0.64.0",
+    "oxlint": "^1.79.0",
+    "publint": "^0.3.24",
+    "tsdown": "^0.22.14",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.20.0"
 }

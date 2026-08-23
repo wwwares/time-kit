@@ -1,10 +1,9 @@
-// vitest.config.ts
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    coverage: {
-      provider: "istanbul", // or 'v8'
-    },
+    include: ['test/**/*.test.ts'],
+    // Month and year counts come off the local calendar, so pin the zone.
+    env: { TZ: 'UTC' },
   },
 });
